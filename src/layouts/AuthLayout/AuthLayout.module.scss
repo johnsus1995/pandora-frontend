@@ -2,6 +2,28 @@
 
 .AuthLayout {
   :global {
-    
+    background-color: red;
+    width: 100%;
+    padding: 0 20px;
+    height: 100vh;
+    nav{
+      background-color: $primary-blue;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      ul{
+        &.right{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          li{
+            list-style:none;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
   }
 }
