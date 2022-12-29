@@ -1,9 +1,10 @@
+import AppRouter from "./router";
 
 
 function App() {
   return (
     <div className="App">
-      App component
+      <AppRouter/>
     </div>
   );
 }
