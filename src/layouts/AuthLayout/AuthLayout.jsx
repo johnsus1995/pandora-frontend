@@ -7,16 +7,17 @@ const AuthLayout = () => {
     <div className={`${styles.AuthLayout} container-fluid`}>
       <nav className="navbar">
         <div className="left">
-          <h3>NEXCC</h3>
+          <p>NEXCC</p>
         </div>
         <div className="right">
           <ul>
-            <li>Option1</li>
-            <li>Option2</li>
+            <li>Customers</li>
+            <li>Profile</li>
             <li>Logout</li>
           </ul>
         </div>
       </nav>
+
       <Outlet />
     </div>
   );

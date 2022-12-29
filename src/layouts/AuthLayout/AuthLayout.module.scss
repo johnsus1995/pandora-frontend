@@ -2,35 +2,43 @@
 
 .AuthLayout {
   :global {
-    background-color: red;
+    background-color: rgb(165, 165, 165);
     width: 100%;
     padding: 0 20px;
     height: 100vh;
-    nav{
+    nav {
       height: 50px;
       background-color: $primary-blue;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      // width: 100%;
-      // position: fixed;
-      .left{
-        margin-left: 10px;
-      }
+      padding: 0 15px 0 15px;
 
-      .right{
-        //margin: top right bottom left;
-        margin: 0 10px 10px 0;
-        
-        ul{
-          display: flex;
-          flex-direction: row;
-          list-style: none;
-          
+      .left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        p {
+          cursor: pointer;
         }
       }
 
+      .right {
+        //margin: top right bottom left;
+        ul {
+          display: flex;
+          flex-direction: row;
+          list-style: none;
+          cursor: pointer;
+          li {
+            padding-right: 30px;
+            &:last-child {
+              padding-right: 0;
+            }
+          }
+        }
+      }
     }
   }
 }
