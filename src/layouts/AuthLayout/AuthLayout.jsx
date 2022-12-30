@@ -4,10 +4,10 @@ import styles from "./AuthLayout.module.scss";
 
 const AuthLayout = () => {
   return (
-    <div className={`${styles.AuthLayout} container-fluid`}>
-      <nav className="navbar">
+    <div className={`${styles.AuthLayout} `}>
+      <nav className="navbar container-fluid">
         <div className="left">
-          <p>NEXCC</p>
+          <p>NExCC</p>
         </div>
         <div className="right">
           <ul>
@@ -19,6 +19,7 @@ const AuthLayout = () => {
       </nav>
 
       <Outlet />
+      <footer className="footer">Developed by Jaison John</footer>
     </div>
   );
 };
