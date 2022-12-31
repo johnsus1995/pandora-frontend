@@ -14,10 +14,11 @@ const loginSchema = yup
   .required();
 
 const Login = (props) => {
+
   const {
     register,
-    control,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
@@ -37,23 +38,41 @@ const Login = (props) => {
       </div>
       <div className="login-form">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="text-inputs">
+
+          
           <Controller
-            name="email"
             control={control}
-            // rules={{ required: true }}
+            name="email"
+            rules={{ required: true }}
             render={({ field }) => (
               <>
                 <TextInput
                   {...field}
-                  {...register("email")}
-                  type="email"
+                  type="text"
                   placeholder="Email"
                 />
                 <p>{errors?.email?.message}</p>
               </>
             )}
           />
+          <Controller
+            control={control}
+            name="password"
+            rules={{ required: true }}
+            render={({ field }) => (
+              <>
+                <TextInput
+                  {...field}
+                  type="password"
+                  placeholder="Password"
+                />
+                <p>{errors?.password?.message}</p>
+              </>
+            )}
+          />
           <button type="submit">Login</button>
+          </div>
         </form>
       </div>
     </div>
