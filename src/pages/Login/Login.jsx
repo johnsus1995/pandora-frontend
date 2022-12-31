@@ -27,7 +27,7 @@ const Login = (props) => {
   });
 
   const onSubmit = (data) => {
-    debugger;
+    // debugger;
   };
 
   // useEffect(() => {
