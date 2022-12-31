@@ -3,8 +3,11 @@ import { ReactComponent as Logo } from "assets/icons/nexcc_logo.svg";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+// import { RotatingLines } from 'react-loader-spinner' 
 
 import TextInput from "components/utils/TextInput";
+import Button from "components/utils/Button";
+import { useEffect } from "react";
 
 const loginSchema = yup
   .object({
@@ -14,7 +17,6 @@ const loginSchema = yup
   .required();
 
 const Login = (props) => {
-
   const {
     register,
     handleSubmit,
@@ -28,6 +30,10 @@ const Login = (props) => {
     debugger;
   };
 
+  useEffect(() => {
+    console.log(errors)
+  },[errors.email])
+
   return (
     <div className={`${styles.Login}`}>
       <div className="title">
@@ -39,40 +45,45 @@ const Login = (props) => {
       <div className="login-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-inputs">
+            <div className="email-input">
+              <Controller
+                control={control}
+                name="email"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <>
+                    <TextInput
+                      {...field}
+                      type="email"
+                      placeholder="Email"
+                      className="input-block"
+                    />
+                    <p>{errors?.email?.message}</p>
+                  </>
+                )}
+              />
+            </div>
 
-          
-          <Controller
-            control={control}
-            name="email"
-            rules={{ required: true }}
-            render={({ field }) => (
-              <>
-                <TextInput
-                  {...field}
-                  type="text"
-                  placeholder="Email"
-                />
-                <p>{errors?.email?.message}</p>
-              </>
-            )}
-          />
-          <Controller
-            control={control}
-            name="password"
-            rules={{ required: true }}
-            render={({ field }) => (
-              <>
-                <TextInput
-                  {...field}
-                  type="password"
-                  placeholder="Password"
-                />
-                <p>{errors?.password?.message}</p>
-              </>
-            )}
-          />
-          <button type="submit">Login</button>
+            <div className="password-input">
+              <Controller
+                control={control}
+                name="password"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <>
+                    <TextInput
+                      {...field}
+                      type="password"
+                      placeholder="Password"
+                      className="input-block"
+                    />
+                    <p>{errors?.password?.message}</p>
+                  </>
+                )}
+              />
+            </div>
           </div>
+            <Button type="submit" isLoading={false} btnText="Login" />
         </form>
       </div>
     </div>
