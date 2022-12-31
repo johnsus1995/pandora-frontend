@@ -1,23 +1,100 @@
 import styles from "./Login.module.scss";
+import { ReactComponent as Logo } from "assets/icons/nexcc_logo.svg";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+// import { RotatingLines } from 'react-loader-spinner'
+
+import TextInput from "components/utils/TextInput";
+import Button from "components/utils/Button";
+import { useEffect } from "react";
+
+const loginSchema = yup
+  .object({
+    email: yup.string().required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();
 
 const Login = (props) => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmit = (data) => {
+    // debugger;
+  };
+
+  // useEffect(() => {
+  //   console.log(errors)
+  // },[errors.email])
+
   return (
     <div className={`${styles.Login}`}>
-      Contrary to popular belief, Lorem Ipsum is not simply random text. It has
-      roots in a piece of classical Latin literature from 45 BC, making it over
-      2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
-      College in Virginia, looked up one of the more obscure Latin words,
-      consectetur, from a Lorem Ipsum passage, and going through the cites of
-      the word in classical literature, discovered the undoubtable source. Lorem
-      Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-      Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
-      book is a treatise on the theory of ethics, very popular during the
-      Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-      amet..", comes from a line in section 1.10.32. The standard chunk of Lorem
-      Ipsum used since the 1500s is reproduced below for those interested.
-      Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by
-      Cicero are also reproduced in their exact original form, accompanied by
-      English versions from the 1914 translation by H. Rackham
+      <div className="title">
+        <h1>NExCC WAR MEMORIAL PIRAVOM</h1>
+      </div>
+      <div className="logo">
+        <Logo />
+      </div>
+      <div className="login-form">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="text-inputs">
+            <div className="email-input">
+              <Controller
+                control={control}
+                name="email"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <>
+                    <TextInput
+                      {...field}
+                      varient="small"
+                      type="email"
+                      placeholder="Email"
+                      className="input-contain"
+                    />
+                    <p>{errors?.email?.message}</p>
+                  </>
+                )}
+              />
+            </div>
+
+            <div className="password-input">
+              <Controller
+                control={control}
+                name="password"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <>
+                    <TextInput
+                      {...field}
+                      type="password"
+                      placeholder="Password"
+                      className="input-contain"
+                    />
+                    <p>{errors?.password?.message}</p>
+                  </>
+                )}
+              />
+            </div>
+          </div>
+          <Button
+            type="submit"
+            isLoading={false}
+            btnText="Login"
+            className="login-submit-btn"
+          />
+        </form>
+        <footer>
+          <h6>Allready have an account? Sign-in<span> here.</span></h6>
+        </footer>
+      </div>
     </div>
   );
 };

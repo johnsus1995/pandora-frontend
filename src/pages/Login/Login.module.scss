@@ -1,8 +1,44 @@
-
 @use "styles/shared" as *;
 
 .Login {
   :global {
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      color: red;
+      min-height: 45px;
+      font-size: 1.2rem;
+    }
+
+    .title {
+      height: 80px;
+      h1 {
+        font-size: 4rem;
+        color: $primary-blue
+      }
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .login-form {
+    }
+
+    footer{
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: grey;
+      span{
+        color: $primary-blue;
+        cursor: pointer;
+      }
+    }
   }
 }
-

@@ -4,20 +4,22 @@ import styles from "./AuthLayout.module.scss";
 
 const AuthLayout = () => {
   return (
-    <div className={`${styles.AuthLayout} container-fluid`}>
-      <nav className="navbar">
+    <div className={`${styles.AuthLayout} `}>
+      <nav className="navbar container-fluid">
         <div className="left">
-          <h3>NEXCC</h3>
+          <p>NExCC</p>
         </div>
         <div className="right">
           <ul>
-            <li>Option1</li>
-            <li>Option2</li>
+            <li>Customers</li>
+            <li>Profile</li>
             <li>Logout</li>
           </ul>
         </div>
       </nav>
+
       <Outlet />
+      <footer className="footer">Developed by Jaison John</footer>
     </div>
   );
 };
