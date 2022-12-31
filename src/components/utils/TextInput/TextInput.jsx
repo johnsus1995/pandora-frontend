@@ -11,6 +11,7 @@ const TextInput = (props) => {
     disabled,
     type,
     className,
+    varient
   } = props;
 
   const handleChange = (e) => {
@@ -30,7 +31,7 @@ const TextInput = (props) => {
   };
 
   return (
-    <div className={`${styles.TextInput}`}>
+    <div className={`${styles.TextInput} ${varient}`}>
       <div class={`${className}`}>
         <input
           type={type}
@@ -40,9 +41,13 @@ const TextInput = (props) => {
           onBlur={onBlur}
           disabled={disabled}
           // placeholder={placeholder}
-          required
+          // required
+          aria-labelledby="placeholder-fname"
+          autocomplete="off"
         />
-        <span class="label-placeholder">{placeholder}</span>
+        <label class="placeholder-text" for="fname" id="placeholder-fname">
+          <div class="text">{placeholder}</div>
+        </label>
       </div>
     </div>
   );
