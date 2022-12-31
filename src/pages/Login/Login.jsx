@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from "assets/icons/nexcc_logo.svg";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-// import { RotatingLines } from 'react-loader-spinner' 
+// import { RotatingLines } from 'react-loader-spinner'
 
 import TextInput from "components/utils/TextInput";
 import Button from "components/utils/Button";
@@ -11,8 +11,8 @@ import { useEffect } from "react";
 
 const loginSchema = yup
   .object({
-    email: yup.string().required("email is required"),
-    password: yup.string().required("password is required"),
+    email: yup.string().required("Email is required"),
+    password: yup.string().required("Password is required"),
   })
   .required();
 
@@ -27,17 +27,17 @@ const Login = (props) => {
   });
 
   const onSubmit = (data) => {
-    debugger;
+    // debugger;
   };
 
-  useEffect(() => {
-    console.log(errors)
-  },[errors.email])
+  // useEffect(() => {
+  //   console.log(errors)
+  // },[errors.email])
 
   return (
     <div className={`${styles.Login}`}>
       <div className="title">
-        <h1>NEXCC WAR MEMORIAL</h1>
+        <h1>NExCC WAR MEMORIAL PIRAVOM</h1>
       </div>
       <div className="logo">
         <Logo />
@@ -54,9 +54,10 @@ const Login = (props) => {
                   <>
                     <TextInput
                       {...field}
+                      varient="small"
                       type="email"
                       placeholder="Email"
-                      className="input-block"
+                      className="input-contain"
                     />
                     <p>{errors?.email?.message}</p>
                   </>
@@ -75,7 +76,7 @@ const Login = (props) => {
                       {...field}
                       type="password"
                       placeholder="Password"
-                      className="input-block"
+                      className="input-contain"
                     />
                     <p>{errors?.password?.message}</p>
                   </>
@@ -83,8 +84,16 @@ const Login = (props) => {
               />
             </div>
           </div>
-            <Button type="submit" isLoading={false} btnText="Login" />
+          <Button
+            type="submit"
+            isLoading={false}
+            btnText="Login"
+            className="login-submit-btn"
+          />
         </form>
+        <footer>
+          <h6>Allready have an account? Sign-in<span> here.</span></h6>
+        </footer>
       </div>
     </div>
   );
