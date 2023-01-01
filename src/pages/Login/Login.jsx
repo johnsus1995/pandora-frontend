@@ -8,6 +8,7 @@ import * as yup from "yup";
 import TextInput from "components/utils/TextInput";
 import Button from "components/utils/Button";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const loginSchema = yup
   .object({
@@ -17,8 +18,9 @@ const loginSchema = yup
   .required();
 
 const Login = (props) => {
+  const navigate = useNavigate()
   const {
-    register,
+    // register,
     handleSubmit,
     control,
     formState: { errors },
@@ -30,9 +32,10 @@ const Login = (props) => {
     // debugger;
   };
 
-  // useEffect(() => {
-  //   console.log(errors)
-  // },[errors.email])
+  const navigateToRegister = () => {
+    navigate("/register")
+  }
+
 
   return (
     <div className={`${styles.Login}`}>
@@ -50,7 +53,7 @@ const Login = (props) => {
                 control={control}
                 name="email"
                 rules={{ required: true }}
-                render={({ field }) => (
+                render={({ ...field }) => (
                   <>
                     <TextInput
                       {...field}
@@ -70,7 +73,7 @@ const Login = (props) => {
                 control={control}
                 name="password"
                 rules={{ required: true }}
-                render={({ field }) => (
+                render={({ ...field }) => (
                   <>
                     <TextInput
                       {...field}
@@ -86,13 +89,13 @@ const Login = (props) => {
           </div>
           <Button
             type="submit"
-            isLoading={false}
+            isLoading={true}
             btnText="Login"
             className="login-submit-btn"
           />
         </form>
         <footer>
-          <h6>Allready have an account? Sign-in<span> here.</span></h6>
+          <h6>Allready have an account? Sign-in<span onClick={navigateToRegister}> here.</span></h6>
         </footer>
       </div>
     </div>

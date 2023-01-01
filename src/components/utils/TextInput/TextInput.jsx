@@ -32,7 +32,7 @@ const TextInput = (props) => {
 
   return (
     <div className={`${styles.TextInput} ${varient}`}>
-      <div class={`${className}`}>
+      <div className={`${className}`}>
         <input
           type={type}
           name={name}
@@ -43,10 +43,10 @@ const TextInput = (props) => {
           // placeholder={placeholder}
           // required
           aria-labelledby="placeholder-fname"
-          autocomplete="off"
+          autoComplete="off"
         />
-        <label class="placeholder-text" for="fname" id="placeholder-fname">
-          <div class="text">{placeholder}</div>
+        <label className="placeholder-text" htmlFor="fname" id="placeholder-fname">
+          <div className="text">{placeholder}</div>
         </label>
       </div>
     </div>

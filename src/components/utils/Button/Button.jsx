@@ -14,7 +14,7 @@ const Button = (props) => {
           <Oval
             height={50}
             width={50}
-            color="#000"
+            color="#422e72"
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}
