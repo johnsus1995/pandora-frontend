@@ -1,3 +1,7 @@
+export const isDev = () => {
+  return process.env.NODE_ENV === "development";
+};
+
 export const sysPhone = phone => {
     const cleaned = ("" + phone).replace(/\D/g, "");
     // 576-456-7890
