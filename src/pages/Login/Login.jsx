@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const loginSchema = yup
   .object({
     email: yup.string().required("Email is required"),
-    // password: yup.string().required("Password is required"),
+    password: yup.string().required("Password is required"),
   })
   .required();
 
@@ -53,7 +53,7 @@ const Login = (props) => {
       </div>
       <div className="login-form">
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="email-input">
+            <div className="text-input">
               <Controller
                 control={control}
                 name="email"
@@ -67,8 +67,28 @@ const Login = (props) => {
                       reg={ref}
                       type="text"
                       placeholder="Email"
+                      errorMessage={errors?.email?.message}
                     />
-                    <p>{errors?.email?.message}</p>
+                  </>
+                )}
+              />
+            </div>
+            <div className="text-input">
+              <Controller
+                control={control}
+                name="password"
+                render={({field: { onChange, onBlur, value, name, ref, }}) => (
+                  <>
+                    <TextInput
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      name={name}
+                      reg={ref}
+                      type="text"
+                      placeholder="Password"
+                      errorMessage={errors?.password?.message}
+                    />
                   </>
                 )}
               />
