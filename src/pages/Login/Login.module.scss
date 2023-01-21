@@ -35,16 +35,16 @@
       margin-bottom: 20px;
     }
 
-    // footer{
-    //   height: 50px;
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   color: grey;
-    //   span{
-    //     color: $primary-blue;
-    //     cursor: pointer;
-    //   }
-    // }
+    footer{
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: grey;
+      span{
+        color: $primary-blue;
+        cursor: pointer;
+      }
+    }
   }
 }

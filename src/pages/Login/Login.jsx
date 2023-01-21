@@ -35,8 +35,8 @@ const Login = (props) => {
   } = loginForm;
 
   const onSubmit = (data) => {
-    // navigate("/");
-    console.log(data);
+    navigate("/");
+    // console.log(data);
   };
 
   const navigateToRegister = () => {
@@ -85,7 +85,7 @@ const Login = (props) => {
                       value={value}
                       name={name}
                       reg={ref}
-                      type="text"
+                      type="password"
                       placeholder="Password"
                       errorMessage={errors?.password?.message}
                     />
@@ -100,12 +100,12 @@ const Login = (props) => {
             className="login-submit-btn"
           />
         </form>
-        {/* <footer>
+        <footer>
           <h6>
             Allready have an account? Sign-in
             <span onClick={navigateToRegister}> here.</span>
           </h6>
-        </footer> */}
+        </footer>
       </div>
     </div>
   );
