@@ -8,6 +8,12 @@
     align-items: center;
     justify-content: center;
 
+    .login-form {
+      display: flex;
+      height: 100vh;
+      // user-select: none;
+    }
+
     p {
       color: red;
       min-height: 45px;
@@ -26,19 +32,16 @@
       margin-bottom: 20px;
     }
 
-    .login-form {
-    }
-
-    footer{
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: grey;
-      span{
-        color: $primary-blue;
-        cursor: pointer;
-      }
-    }
+    // footer{
+    //   height: 50px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   color: grey;
+    //   span{
+    //     color: $primary-blue;
+    //     cursor: pointer;
+    //   }
+    // }
   }
 }

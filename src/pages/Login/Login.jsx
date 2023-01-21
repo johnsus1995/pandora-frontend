@@ -7,35 +7,41 @@ import * as yup from "yup";
 
 import TextInput from "components/utils/TextInput";
 import Button from "components/utils/Button";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const loginSchema = yup
   .object({
     email: yup.string().required("Email is required"),
-    password: yup.string().required("Password is required"),
+    // password: yup.string().required("Password is required"),
   })
   .required();
 
 const Login = (props) => {
-  const navigate = useNavigate()
-  const {
-    // register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
+  const navigate = useNavigate();
+
+  const loginForm = useForm({
     resolver: yupResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
+  const {
+    handleSubmit,
+    control,
+    // register,
+    formState: { errors },
+  } = loginForm;
+
   const onSubmit = (data) => {
-    // debugger;
+    // navigate("/");
+    console.log(data);
   };
 
   const navigateToRegister = () => {
-    navigate("/register")
-  }
-
+    navigate("/register");
+  };
 
   return (
     <div className={`${styles.Login}`}>
@@ -47,56 +53,39 @@ const Login = (props) => {
       </div>
       <div className="login-form">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="text-inputs">
             <div className="email-input">
               <Controller
                 control={control}
                 name="email"
-                rules={{ required: true }}
-                render={({ ...field }) => (
+                render={({field: { onChange, onBlur, value, name, ref, }}) => (
                   <>
                     <TextInput
-                      {...field}
-                      varient="small"
-                      type="email"
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      name={name}
+                      reg={ref}
+                      type="text"
                       placeholder="Email"
-                      className="input-contain"
                     />
                     <p>{errors?.email?.message}</p>
                   </>
                 )}
               />
             </div>
-
-            <div className="password-input">
-              <Controller
-                control={control}
-                name="password"
-                rules={{ required: true }}
-                render={({ ...field }) => (
-                  <>
-                    <TextInput
-                      {...field}
-                      type="password"
-                      placeholder="Password"
-                      className="input-contain"
-                    />
-                    <p>{errors?.password?.message}</p>
-                  </>
-                )}
-              />
-            </div>
-          </div>
-          <Button
+            <Button
             type="submit"
-            isLoading={true}
+            isLoading={false}
             btnText="Login"
             className="login-submit-btn"
           />
         </form>
-        <footer>
-          <h6>Allready have an account? Sign-in<span onClick={navigateToRegister}> here.</span></h6>
-        </footer>
+        {/* <footer>
+          <h6>
+            Allready have an account? Sign-in
+            <span onClick={navigateToRegister}> here.</span>
+          </h6>
+        </footer> */}
       </div>
     </div>
   );

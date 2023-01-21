@@ -1,7 +1,9 @@
 import { sysPhone } from "helpers";
+import React from "react";
+
 import styles from "./TextInput.module.scss";
 
-const TextInput = (props) => {
+const TextInput = React.forwardRef((props, ref) => {
   const {
     placeholder,
     name,
@@ -10,47 +12,46 @@ const TextInput = (props) => {
     onBlur,
     disabled,
     type,
-    className,
-    varient
+    // className,
+    varient,
+    ariaLabelledby,
   } = props;
 
   const handleChange = (e) => {
     switch (type) {
       case "tel":
-        onChange({
-          target: {
-            name: name,
-            value: sysPhone(e.target.value),
-          },
-        });
+        !!onChange &&
+          onChange({
+            target: {
+              name: name,
+              value: sysPhone(e.target.value),
+            },
+          });
         break;
 
       default:
-        onChange(e);
+        !!onChange && onChange(e);
     }
   };
 
   return (
     <div className={`${styles.TextInput} ${varient}`}>
-      <div className={`${className}`}>
-        <input
-          type={type}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          onBlur={onBlur}
-          disabled={disabled}
-          // placeholder={placeholder}
-          // required
-          aria-labelledby="placeholder-fname"
-          autoComplete="off"
-        />
-        <label className="placeholder-text" htmlFor="fname" id="placeholder-fname">
-          <div className="text">{placeholder}</div>
-        </label>
-      </div>
+      <input
+        className="input"
+        type={type}
+        name={name}
+        id="email"
+        value={value}
+        onChange={handleChange}
+        onBlur={onBlur}
+        disabled={disabled}
+        ref={ref}
+        placeholder=" "
+      />
+      <label for="email">Email or phone</label>
+
     </div>
   );
-};
+});
 
 export default TextInput;
