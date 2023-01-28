@@ -8,6 +8,10 @@ import * as yup from "yup";
 import TextInput from "components/utils/TextInput";
 import Button from "components/utils/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useMemo, useState } from "react";
+import { bindActionCreators } from "redux";
+import * as _authActions from "store/auth/actions";
 
 const loginSchema = yup
   .object({
@@ -17,7 +21,16 @@ const loginSchema = yup
   .required();
 
 const Login = (props) => {
+
+  const [loading,setLoading] = useState(false)
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const authActions = useMemo(
+    () => bindActionCreators(_authActions, dispatch),
+    [dispatch]
+  );
 
   const loginForm = useForm({
     resolver: yupResolver(loginSchema),
@@ -34,9 +47,11 @@ const Login = (props) => {
     formState: { errors },
   } = loginForm;
 
-  const onSubmit = (data) => {
-    navigate("/");
+  const onSubmit = async(data) => {
+
     // console.log(data);
+    const res = await authActions.login({data:data}).unwrap()
+    // navigate("/");
   };
 
   const navigateToRegister = () => {
@@ -53,47 +68,47 @@ const Login = (props) => {
       </div>
       <div className="login-form">
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="text-input">
-              <Controller
-                control={control}
-                name="email"
-                render={({field: { onChange, onBlur, value, name, ref, }}) => (
-                  <>
-                    <TextInput
-                      onChange={onChange}
-                      onBlur={onBlur}
-                      value={value}
-                      name={name}
-                      reg={ref}
-                      type="text"
-                      placeholder="Email"
-                      errorMessage={errors?.email?.message}
-                    />
-                  </>
-                )}
-              />
-            </div>
-            <div className="text-input">
-              <Controller
-                control={control}
-                name="password"
-                render={({field: { onChange, onBlur, value, name, ref, }}) => (
-                  <>
-                    <TextInput
-                      onChange={onChange}
-                      onBlur={onBlur}
-                      value={value}
-                      name={name}
-                      reg={ref}
-                      type="password"
-                      placeholder="Password"
-                      errorMessage={errors?.password?.message}
-                    />
-                  </>
-                )}
-              />
-            </div>
-            <Button
+          <div className="text-input">
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                <>
+                  <TextInput
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    name={name}
+                    reg={ref}
+                    type="text"
+                    placeholder="Email"
+                    errorMessage={errors?.email?.message}
+                  />
+                </>
+              )}
+            />
+          </div>
+          <div className="text-input">
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                <>
+                  <TextInput
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    name={name}
+                    reg={ref}
+                    type="password"
+                    placeholder="Password"
+                    errorMessage={errors?.password?.message}
+                  />
+                </>
+              )}
+            />
+          </div>
+          <Button
             type="submit"
             isLoading={false}
             btnText="Login"

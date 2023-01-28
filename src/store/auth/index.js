@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./actions";
 
-const token = localStorage.getItem("u_tok");
+// const token = localStorage.getItem("u_tok");
+const token = sessionStorage.getItem("token")
 
 export const authSlice = createSlice({
   name: "auth",

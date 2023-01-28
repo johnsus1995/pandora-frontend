@@ -6,11 +6,9 @@ import { apiErrorHandler, apiSuccessHandler } from "helpers/responseHandler";
 
 let customAxios = axios.create({
   baseURL: config.API_URL,
-  paramsSerializer: function (params) {
-    return Qs.stringify(params, {
-      arrayFormat: "brackets",
-    });
-  },
+  paramsSerializer: {
+    indexes:false
+  }
 });
 
 customAxios.interceptors.request.use(
